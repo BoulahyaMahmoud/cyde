@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Button from "./components/Button";
+import { useCYDE } from "./cyde";
 
 const ActivityInput = ({ onSubmit }) => {
   const [activity, set_activity] = useState({});
@@ -62,7 +63,8 @@ const ActivitiesList = ({ activities, onDelete }) => {
 };
 
 export const Routine = () => {
-  const [routine, set_routine] = useState([]);
+  const { cyde, dispatch } = useCYDE();
+  const [routine, set_routine] = useState(cyde.routine);
   return (
     <div className="w-full flex flex-col space-y-2 h-full p-4 bg-stone-300 rounded-b">
       <ActivityInput
@@ -85,7 +87,13 @@ export const Routine = () => {
           </div>
         )}
       </div>
-      <Button onClick={() => set_routine([])}>save</Button>
+      <Button
+        onClick={() => {
+          dispatch({ type: "set_routine", routine });
+        }}
+      >
+        save
+      </Button>
     </div>
   );
 };

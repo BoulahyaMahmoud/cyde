@@ -2,28 +2,26 @@ import { useState } from "react";
 
 export const Day = () => {
   const [day_percentage, set_day_percentage] = useState(
-    86400 /
       (new Date().getHours() * 3600 +
         new Date().getMinutes() * 60 +
-        new Date().getSeconds())
+        new Date().getSeconds()) / 86400
   );
 
   setInterval(() => {
     set_day_percentage(
-      86400 /
         (new Date().getHours() * 3600 +
           new Date().getMinutes() * 60 +
-          new Date().getSeconds())
+          new Date().getSeconds() ) / 86400
     );
   }, 5000);
 
   return (
     <div className="relative flex flex-col w-full divide-y divide-gray-100 rounded">
       <span
-        className="absolute w-full bg-gray-800"
+        className="absolute w-full bg-gray-800 opacity-20"
         style={{
           height: "2px",
-          top: `${day_percentage}%`,
+          top: `${day_percentage * 100}%`,
         }}
       ></span>
       {Array(24)

@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import Button from "./components/Button";
+import { useCYDE } from "./cyde";
 
 export const Toolbar = () => {
+  const { cyde, dispatch } = useCYDE();
+
   return (
     <div className="w-full flex items-center gap-2 p-1 px-2 rounded-t bg-gray-900 shadow-b">
       <div className="flex items-center gap-2 flex-grow text-gray-100">
@@ -22,7 +25,13 @@ export const Toolbar = () => {
       <Link to="/routine">
         <Button>routine</Button>
       </Link>
-      <Button>pause</Button>
+      <Button
+        onClick={() => {
+          dispatch({ type: "toggle" });
+        }}
+      >
+        {cyde.status === "on" ? "off" : "on"}
+      </Button>
     </div>
   );
 };
