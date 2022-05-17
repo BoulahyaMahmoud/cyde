@@ -27,6 +27,13 @@ export const Toolbar = () => {
       </Link>
       <Button
         onClick={() => {
+          dispatch({ type: "reset" });
+        }}
+      >
+        reset
+      </Button>
+      <Button
+        onClick={() => {
           dispatch({ type: "toggle" });
         }}
       >
